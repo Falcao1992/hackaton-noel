@@ -15,8 +15,8 @@ class Scene1 extends Phaser.Scene {
       frameHeight: 16
     });
     this.load.spritesheet("ship3", "assets/spritesheets/ship3.png",{
-      frameWidth: 32,
-      frameHeight: 32
+      frameWidth: 37,
+      frameHeight: 45
     });
     this.load.spritesheet("explosion", "assets/spritesheets/explosion.png",{
       frameWidth: 16,
@@ -27,8 +27,8 @@ class Scene1 extends Phaser.Scene {
       frameHeight: 16
     });
     this.load.spritesheet("player", "assets/spritesheets/player.png",{
-      frameWidth: 16,
-      frameHeight: 24
+      frameWidth: 48,
+      frameHeight: 85
     });
     this.load.spritesheet("beam", "assets/spritesheets/beam.png",{
       frameWidth: 16,
@@ -39,9 +39,11 @@ class Scene1 extends Phaser.Scene {
   }
 
   create() {
+
+    
     this.add.text(20, 20, "Loading game...");
     this.scene.start("playGame");
-
+ 
     this.anims.create({
       key: "ship1_anim",
       frames: this.anims.generateFrameNumbers("ship"),
@@ -56,8 +58,8 @@ class Scene1 extends Phaser.Scene {
     });
     this.anims.create({
       key: "ship3_anim",
-      frames: this.anims.generateFrameNumbers("ship3"),
-      frameRate: 20,
+      frames: this.anims.generateFrameNumbers("ship3", {start:0, end:4}),
+      frameRate: 10,
       repeat: -1
     });
 
