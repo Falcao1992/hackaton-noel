@@ -1,7 +1,7 @@
 var gameSettings = {
   playerSpeed: 200,
-  maxPowerups: 2,
-  powerUpVel: 50,
+  maxPowerups: 1,
+  powerUpVel: 100,
 }
 
 var config = {
@@ -14,12 +14,12 @@ var config = {
   physics: {
     default: "arcade",
     arcade:{
-        debug: false,
+        debug: true,  
         debugShowVelocity: false
     }
   }
 }
-
+ 
 
 var game = new Phaser.Game(config);
 
