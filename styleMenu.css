@@ -1,0 +1,16 @@
+body {
+    max-width: 100vw;
+    max-height: 100vh;
+}
+
+.Menu_Page--style {
+   text-align: center; 
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+}
+
+.content--Menu {
+    display: flex;
+    justify-content: center;
+}

@@ -50,7 +50,11 @@ window.onload = function() {
             height: 540
         },
         physics: {
-            default: "arcade"
+            default: "arcade",
+            arcade:{
+                debug: true,
+                debugShowVelocity: false
+            }
         },
         scene: playGame
     }
@@ -68,6 +72,18 @@ class playGame extends Phaser.Scene{
         this.load.audio("song", "song.mp3");
     }
     create(){
+        this.song = this.sound.add("song");
+        const musicConfig = {
+            mute: false,
+            volume: 1,
+            rate: 1,
+            detune: 0,
+            seek: 0,
+            loop: false,
+            delay: 0
+        }
+        this.song.play(musicConfig);
+        
         const image = this.add.image(0, 0, "fond").setOrigin(0);
         // creation of the physics group which will contain all platforms
         this.platformGroup = this.physics.add.group();
