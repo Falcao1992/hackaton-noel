@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Le juste prix</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Lora" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="style.css">
+
+    <script src="part2.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="jumbotron text-center">
+            <h1 id="randomPrice"></h1>
+            <h1 id="cadeauRandom"></h1>
+            <h3>le prix de la vitrine est entre 0 et <span class="prixMax">20</span>.</h3>
+            <h1 id="Crono">30</h1>
+            <h2 class="secondes">Secondes</h2>
+            <h2 class="reponse">Trouvez le Juste Prix !</h2>
+            <form id="paris" class="form-inline" role="form">
+                <input type="text" placeholder="Entrez un nombre" autocomplete="off" id="nombre" class="form-control">
+                <button id="commencer" class="btn btn-large btn-danger">Commencer !</button>
+            </form>
+        </div>
+    </div>
+    <script type="text/javascript">
+        
+        const prix = 30
+        const cadeau = ['Téléphone', 'Airpod', 'Pc', 'Barre de son']
+        function getRandomInt(max) {
+            return Math.floor(Math.random() * Math.floor(max));
+        }
+        console.log(getRandomInt(30))
+                const cadeauRandom = document.getElementById("cadeauRandom"); // récupère l'id
+                const old_contenu = cadeauRandom.firstChild; // stock l'ancien contenu
+                const texte = document.createTextNode(cadeau[getRandomInt(3)]); // crée le texte
+                cadeauRandom.appendChild(texte); // l'affiche
+
+                let cpt = 10;
+                timer = setInterval(function(){
+            if(cpt>0) // si on a pas encore atteint la fin
+            {
+                --cpt; // décrémente le compteur
+                const Crono = document.getElementById("Crono"); // récupère l'id
+                const old_contenu = Crono.firstChild; // stock l'ancien contenu
+                Crono.removeChild(old_contenu); // supprime le contenu
+                const texte = document.createTextNode(cpt); // crée le texte
+                Crono.appendChild(texte); // l'affiche
+            }
+            else // sinon brise la boucle
+            {
+                window.location.replace("../rebondie/index.html");
+                clearInterval(timer);
+            }
+        }, 1000);
+
+     </script>  
+</body>
+</html>
