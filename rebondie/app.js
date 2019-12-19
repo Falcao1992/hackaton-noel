@@ -46,8 +46,8 @@ window.onload = function() {
             mode: Phaser.Scale.FIT,
             autoCenter: Phaser.Scale.CENTER_BOTH,
             parent: "thegame",
-            width: 750,
-            height: 500
+            width: 960,
+            height: 540
         },
         physics: {
             default: "arcade"
@@ -68,19 +68,19 @@ class playGame extends Phaser.Scene{
         this.load.audio("song", "song.mp3");
     }
     create(){
-        const image = this.add.image(0, 0, 'fond');
+        const image = this.add.image(0, 0, "fond").setOrigin(0);
         // creation of the physics group which will contain all platforms
         this.platformGroup = this.physics.add.group();
- 
+
         // ball sprite bound to an ARCADE body
         this.ball = this.physics.add.sprite(game.config.width * gameOptions.ballPosition, game.config.height * gameOptions.groundPosition - gameOptions.ballHeight, "ball");
- 
+
         // set ball vertical gravity
         this.ball.body.gravity.y = gameOptions.ballGravity;
- 
+
         // set maximum restitution to the ball
         this.ball.setBounce(1);
- 
+
         // we will only check ball collision on its bottom side
         this.ball.body.checkCollision.down = true;
         this.ball.body.checkCollision.up = false;
@@ -89,13 +89,13 @@ class playGame extends Phaser.Scene{
  
         // make ball physics body a little narrower than its sprite
         this.ball.setSize(30, 50, true)
- 
+
         // first platform will be exactly under the ball
         let platformX = this.ball.x;
- 
+
         // we are going to create 10 platforms which we'll reuse to save resources
         for(let i = 0; i < 5; i++){
- 
+
             // platform creation, as a member of platformGroup physics group
             let platform = this.platformGroup.create(0, 0, "ground");
  
