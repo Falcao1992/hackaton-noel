@@ -190,12 +190,24 @@ class FlappyBirdGame {
 
   _OnPreload(scene) {
     this._scene = scene;
+    this._scene.load.audio("song", "songsanta.mp3");
     this._scene.load.image('sky', './sky.png');
     this._scene.load.image('bird', './bird.png');
     this._scene.load.image('pipe', './pipe.png');
   }
 
   _OnCreate(scene) {
+    this._scene.song = this._scene.sound.add("song");
+        const musicConfig = {
+            mute: false,
+            volume: 1,
+            rate: 1,
+            detune: 0,
+            seek: 0,
+            loop: false,
+            delay: 0
+        }
+        this._scene.song.play(musicConfig);
     const s = this._scene.add.image(0, 0, 'sky');
     s.displayOriginX = 0;
     s.displayOriginY = 0;

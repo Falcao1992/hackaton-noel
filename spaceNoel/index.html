@@ -11,7 +11,18 @@
     </head>
     <body>
         <script type="text/javascript">
-            
+            let cpt = 30;
+timer = setInterval(function(){
+if(cpt>0) // si on a pas encore atteint la fin
+{
+--cpt; // décrémente le compteur
+            }
+            else // sinon brise la boucle
+            {
+                window.location.replace("../index.html");
+                clearInterval(timer);
+            }
+        }, 600);
         </script>
     </body>
 </html>

@@ -1,7 +1,11 @@
 let game;
 let cpt = 30;
 timer = setInterval(function(){
-if(cpt === 0)
+if(cpt>0) // si on a pas encore atteint la fin
+{
+--cpt; // décrémente le compteur
+            }
+            else // sinon brise la boucle
             {
                 window.location.replace("../flappysanta/index.html");
                 clearInterval(timer);

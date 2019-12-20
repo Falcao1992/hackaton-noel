@@ -2,7 +2,7 @@ body {
     background-image: url("./fondMenu.jpg");
     background-size: 100vw 100vh ;
     font-family: 'Mountains of Christmas', cursive;
-    color: white;
+
 }
 
 .Menu_Page--style {
@@ -15,4 +15,9 @@ body {
 .content--Menu {
     display: flex;
     justify-content: center;
+}
+
+a {
+    color: white;
+    text-decoration: none; 
 }
