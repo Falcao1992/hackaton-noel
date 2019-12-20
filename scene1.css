@@ -1,0 +1,61 @@
+body {
+    background-color: black;
+    background-image: url("./noel.jpg");
+    font-family: 'Mountains of Christmas', cursive;
+}
+
+.neige {
+    background-image: url("./neige.gif");
+}
+
+.position {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.blur-out-contract {
+	-webkit-animation: blur-out-contract 2s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+	        animation: blur-out-contract 2s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+}
+
+@-webkit-keyframes blur-out-contract {
+    0% {
+      -webkit-filter: blur(0.01);
+              filter: blur(0.01);
+    }
+    100% {
+      letter-spacing: -0.5em;
+      -webkit-filter: blur(12px) opacity(0%);
+              filter: blur(12px) opacity(0%);
+    }
+  }
+  @keyframes blur-out-contract {
+    0% {
+      -webkit-filter: blur(0.01);
+              filter: blur(0.01);
+    }
+    100% {
+      letter-spacing: -0.5em;
+      -webkit-filter: blur(12px) opacity(0%);
+              filter: blur(12px) opacity(0%);
+    }
+  }
+  
+  
+  h1  {
+      color: white;
+      vertical-align: middle;
+      font-size: 100px;
+  }
+
+.blur-out-contract2 {
+	-webkit-animation: blur-out-contract  3s 2s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+	        animation: blur-out-contract  3s 2s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+}
+
+.blur-out-contract3 {
+	-webkit-animation: blur-out-contract  4s 5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+	        animation: blur-out-contract  4s 5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+}

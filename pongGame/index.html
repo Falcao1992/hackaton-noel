@@ -21,11 +21,12 @@
             <h2 class="secondes">Secondes</h2>
             <h2 class="reponse">Trouvez le Juste Prix !</h2>
             <form id="paris" class="form-inline" role="form">
-                <input type="text" placeholder="Entrez un nombre" autocomplete="off" id="nombre" class="form-control">
-                <button id="commencer" class="btn btn-large btn-danger">Commencer !</button>
+                <input type="text" placeholder="Entrez un nombre" autocomplete="off" id="nombre" class="form-control" onsubmit="return false;">
+                <button id="commencer" class="btn btn-large btn-danger" >Commencer !</button>
             </form>
         </div>
     </div>
+    <div id="output-box"></div>
     <script type="text/javascript">
         
         const prix = 30
@@ -56,7 +57,7 @@
                 clearInterval(timer);
             }
         }, 1000);
-
      </script>  
+     
 </body>
 </html>

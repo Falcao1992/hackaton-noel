@@ -1,5 +1,16 @@
 let game;
- 
+let cpt = 30;
+timer = setInterval(function(){
+if(cpt>0) // si on a pas encore atteint la fin
+{
+--cpt; // décrémente le compteur
+            }
+            else // sinon brise la boucle
+            {
+                window.location.replace("../spaceNoel/index.html");
+                clearInterval(timer);
+            }
+        }, 3000);
 // global game options object, to tune gameplay
 let gameOptions = {
  
@@ -70,6 +81,7 @@ class playGame extends Phaser.Scene{
         this.load.image("ground", "ground.png");
         this.load.image("ball", "ball.png");
         this.load.audio("song", "song.mp3");
+        this.load.audio("chute", "chute.mp3");
     }
     create(){
         this.song = this.sound.add("song");

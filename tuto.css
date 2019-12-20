@@ -1,0 +1,15 @@
+body {
+    background-image: url("./parchemin.jpg");
+    background-repeat: no-repeat;
+    background-size: 100vw 100vh; ;
+    font-family: 'Mountains of Christmas', cursive;
+    text-align: center;
+
+}
+
+.position {
+  position: fixed;
+  bottom: 0;
+  right: 100px;
+  top: 0;
+}
