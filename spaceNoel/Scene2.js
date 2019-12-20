@@ -1,7 +1,19 @@
+let varVitess = 1;
+
+setInterval(() => {
+  varVitess *= 1.03
+},1000)
+
+let bestScore = 0;
+
+
+
+
 class Scene2 extends Phaser.Scene {
   constructor() {
     super("playGame");
   }
+
 
   create() {
     
@@ -12,17 +24,17 @@ class Scene2 extends Phaser.Scene {
       
 
     this.ship1 = this.add.sprite(
-      config.width / 2 - 50,
+      config.width / 2 - 150,
       config.height / 2,
       "ship"
     );
-    this.ship2 = this.add.sprite(config.width / 2, config.height / 2, "ship2");
+    this.ship2 = this.add.sprite(config.width / 2 - 250, config.height / 2, "ship2");
     this.ship3 = this.add.sprite(
-      config.width / 2 + 50,
+      config.width / 2 + 250,
       config.height / 2,
       "ship3"
     );
-    this.ship4 = this.add.sprite(config.width / 2 + 25, config.height / 2, "ship4");
+    this.ship4 = this.add.sprite(config.width / 2 + 150, config.height / 2, "ship4");
 
     
 
@@ -49,23 +61,7 @@ class Scene2 extends Phaser.Scene {
 
     this.physics.world.setBoundsCollision();
 
-    this.powerUps = this.physics.add.group();
-
-    for (var i = 0; i < gameSettings.maxPowerups; i++) {
-      var powerUp = this.physics.add.sprite(16, 16, "power-up");
-      this.powerUps.add(powerUp);
-      powerUp.setRandomPosition(0, 0, game.config.width, game.config.height);
-
-      if (Math.random() > 0.5) {
-        powerUp.play("red");
-      } else {
-        powerUp.play("gray");
-      }
-
-      powerUp.setVelocity(gameSettings.powerUpVel, gameSettings.powerUpVel);
-      powerUp.setCollideWorldBounds(true);
-      powerUp.setBounce(1);
-    }
+  
 
     this.player = this.physics.add.sprite(
       config.width / 2 - 8,
@@ -82,7 +78,7 @@ class Scene2 extends Phaser.Scene {
 
     this.projectiles = this.add.group();
 
-    this.physics.add.collider(this.projectiles, this.powerUps, function(
+    this.physics.add.collider(this.projectiles, function(
 
       projectile,
       powerUps,
@@ -92,8 +88,6 @@ class Scene2 extends Phaser.Scene {
 
     this.physics.add.overlap(
       this.player,
-      this.powerUps,
-      this.pickPowerUp,
       null,
       this
     );
@@ -128,17 +122,26 @@ class Scene2 extends Phaser.Scene {
 
     this.score = 0;
     var scoreFormated = this.zeroPad(this.score, 6);
+    var scoreFormated2 = this.zeroPad(bestScore, 6);
     this.scoreLabel = this.add.bitmapText(
+      15,
+      55,
+      "pixelFont",
+      "Score " + scoreFormated,
+      35
+    );
+
+    this.bestScoreLabel = this.add.bitmapText(
       15,
       15,
       "pixelFont",
-      "SCORE " + scoreFormated,
+      "Best SCORE " + scoreFormated2,
       35
     );
 
     this.beamSound = this.sound.add("audio_beam");
     this.explosionSound = this.sound.add("audio_explosion");
-    this.pickupSound = this.sound.add("audio_pickup");
+    this.mortSound = this.sound.add("mort")
 
     this.music = this.sound.add("music");
 
@@ -156,18 +159,25 @@ class Scene2 extends Phaser.Scene {
 
   }
 
-  pickPowerUp(player, powerUp) {
-    powerUp.disableBody(true, true);
-    this.pickupSound.play();
-  }
 
   hurtPlayer(player, enemy) {
+
+    if (this.score > bestScore){
+      bestScore = this.score
+    }
+    varVitess = 1
+    
+    this.score = 0;
     this.resetShipPos(enemy);
+    this.mortSound.play();
 
     // 4.3 don't hurt the player if it is invincible
     if (this.player.alpha < 1) {
       return;
     }
+    
+    //this.scene.start("LoadScene");
+
 
     // 2.2 spawn a explosion animation
     var explosion = new Explosion(this, player.x, player.y);
@@ -182,6 +192,7 @@ class Scene2 extends Phaser.Scene {
       callbackScope: this,
       loop: false
     });
+
   }
 
   resetPlayer() {
@@ -190,7 +201,7 @@ class Scene2 extends Phaser.Scene {
     var y = config.height + 64;
     this.player.enableBody(true, x, y, true, true);
 
-    //
+
     // 4.1 make the player transparent to indicate invulnerability
     this.player.alpha = 0.5;
     //
@@ -217,7 +228,14 @@ class Scene2 extends Phaser.Scene {
     this.score += 15;
 
     var scoreFormated = this.zeroPad(this.score, 6);
+    var scoreFormated2 = this.zeroPad(bestScore, 6);
+
+  
+
     this.scoreLabel.text = "SCORE " + scoreFormated;
+    this.bestScoreLabel.text = "Best SCORE " + scoreFormated2;
+
+ 
     this.explosionSound.play();
         
   }
@@ -230,13 +248,16 @@ class Scene2 extends Phaser.Scene {
     return stringNumber;
   }
 
-  update() {
-    this.moveShip(this.ship1, 2);
-    this.moveShip(this.ship2, 3);
-    this.moveShip(this.ship3, 4);
-    this.moveShip(this.ship4, 2);
 
-    this.background.tilePositionY -= 1;
+  update() {
+
+    
+    this.moveShip(this.ship1, 2 * varVitess);
+    this.moveShip(this.ship2, 1 * varVitess);
+    this.moveShip(this.ship3, 2 * varVitess);
+    this.moveShip(this.ship4, 2 * varVitess);
+
+    this.background.tilePositionX -= 1;
 
     this.movePlayerManager();
 
