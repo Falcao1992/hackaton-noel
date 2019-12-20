@@ -1,7 +1,7 @@
 let varVitess = 1;
 
 setInterval(() => {
-  varVitess *= 1.01
+  varVitess *= 1.03
 },1000)
 
 let bestScore = 0;
@@ -122,6 +122,7 @@ class Scene2 extends Phaser.Scene {
 
     this.score = 0;
     var scoreFormated = this.zeroPad(this.score, 6);
+    var scoreFormated2 = this.zeroPad(bestScore, 6);
     this.scoreLabel = this.add.bitmapText(
       15,
       55,
@@ -130,11 +131,11 @@ class Scene2 extends Phaser.Scene {
       35
     );
 
-    this.bestScore = this.add.bitmapText(
+    this.bestScoreLabel = this.add.bitmapText(
       15,
       15,
       "pixelFont",
-      "Best SCORE " + scoreFormated,
+      "Best SCORE " + scoreFormated2,
       35
     );
 
@@ -160,6 +161,11 @@ class Scene2 extends Phaser.Scene {
 
 
   hurtPlayer(player, enemy) {
+
+    if (this.score > bestScore){
+      bestScore = this.score
+    }
+    varVitess = 1
     
     this.score = 0;
     this.resetShipPos(enemy);
@@ -169,6 +175,9 @@ class Scene2 extends Phaser.Scene {
     if (this.player.alpha < 1) {
       return;
     }
+    
+    //this.scene.start("LoadScene");
+
 
     // 2.2 spawn a explosion animation
     var explosion = new Explosion(this, player.x, player.y);
@@ -183,6 +192,7 @@ class Scene2 extends Phaser.Scene {
       callbackScope: this,
       loop: false
     });
+
   }
 
   resetPlayer() {
@@ -191,7 +201,7 @@ class Scene2 extends Phaser.Scene {
     var y = config.height + 64;
     this.player.enableBody(true, x, y, true, true);
 
-    //
+
     // 4.1 make the player transparent to indicate invulnerability
     this.player.alpha = 0.5;
     //
@@ -218,9 +228,13 @@ class Scene2 extends Phaser.Scene {
     this.score += 15;
 
     var scoreFormated = this.zeroPad(this.score, 6);
+    var scoreFormated2 = this.zeroPad(bestScore, 6);
+
   
 
     this.scoreLabel.text = "SCORE " + scoreFormated;
+    this.bestScoreLabel.text = "Best SCORE " + scoreFormated2;
+
  
     this.explosionSound.play();
         
@@ -237,13 +251,10 @@ class Scene2 extends Phaser.Scene {
 
   update() {
 
-    if (this.score > bestScore){
-      bestScore = this.score,
-      console.log(bestScore)
-    };
+    
     this.moveShip(this.ship1, 2 * varVitess);
-    this.moveShip(this.ship2, 3 * varVitess);
-    this.moveShip(this.ship3, 4 * varVitess);
+    this.moveShip(this.ship2, 1 * varVitess);
+    this.moveShip(this.ship3, 2 * varVitess);
     this.moveShip(this.ship4, 2 * varVitess);
 
     this.background.tilePositionX -= 1;
