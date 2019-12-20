@@ -10,7 +10,7 @@ class Beam extends Phaser.GameObjects.Sprite{
 
     this.play("beam_anim");
     scene.physics.world.enableBody(this);
-    this.body.velocity.y = - 250;
+    this.body.velocity.y = - 450;
 
     scene.projectiles.add(this);
 
