@@ -45,9 +45,15 @@ body {
   
   
   h1  {
-      color: white;
+      color: red;
       vertical-align: middle;
       font-size: 100px;
+  }
+  h2  {
+    color: red;
+    vertical-align: middle;
+    font-size: 70px;
+
   }
 
 .blur-out-contract2 {
