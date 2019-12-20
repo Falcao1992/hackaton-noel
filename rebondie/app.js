@@ -1,16 +1,12 @@
 let game;
 let cpt = 30;
 timer = setInterval(function(){
-if(cpt>0) // si on a pas encore atteint la fin
-{
---cpt; // décrémente le compteur
-            }
-            else // sinon brise la boucle
+if(cpt === 0)
             {
-                window.location.replace("../spaceNoel/index.html");
+                window.location.replace("../flappysanta/index.html");
                 clearInterval(timer);
             }
-        }, 3000);
+        }, 600);
 // global game options object, to tune gameplay
 let gameOptions = {
  

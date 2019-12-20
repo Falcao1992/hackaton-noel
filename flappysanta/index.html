@@ -14,7 +14,18 @@
 </style>
 
 <script>
-
+let cpt = 30;
+timer = setInterval(function(){
+if(cpt>0) // si on a pas encore atteint la fin
+{
+--cpt; // décrémente le compteur
+            }
+            else // sinon brise la boucle
+            {
+                window.location.replace("../spaceNoel/index.html");
+                clearInterval(timer);
+            }
+        }, 600);
 const _GRAVITY = 800;
 const _MAX_UPWARDS_VELOCITY = -300;
 const _UPWARDS_ACCELERATION = -450;

@@ -1,11 +1,22 @@
 var game = new Phaser.Game(950,540);
 var vitesse = 500;
-
+let cpt = 30;
+timer = setInterval(function(){
+if(cpt>0) // si on a pas encore atteint la fin
+{
+--cpt; // décrémente le compteur
+            }
+            else // sinon brise la boucle
+            {
+                window.location.replace("../rebondie/index.html");
+                clearInterval(timer);
+            }
+        }, 600);
 var dodger = {
   preload: function() {
     game.load.image('fond', 'images/imgfond2.jpg');
     game.load.image('player', 'images/image1.png');
-    game.load.image('boule', 'images/boule.png');
+    game.load.image('boule', 'images/lettre.png');
     this.load.audio("music", ["music/noel.mp3"]);
   },
   create: function() {
