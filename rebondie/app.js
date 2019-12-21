@@ -1,5 +1,5 @@
 let game;
-let cpt = 30;
+let cpt = 60;
 timer = setInterval(function(){
 if(cpt>0) // si on a pas encore atteint la fin
 {
